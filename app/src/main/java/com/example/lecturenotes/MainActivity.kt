@@ -3,6 +3,7 @@ package com.example.lecturenotes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.lecturenotes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +14,13 @@ class MainActivity : AppCompatActivity() {
         binding.button2.setOnClickListener {
             val intent = Intent(this, EditActivity::class.java)
             intent.putExtra("NOTE_TITLE", binding.textView4.text)
-            startActivity(intent)
+            startActivityForResult(intent, 10)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val text = "rqCode:" + requestCode + " - resCode: " + resultCode
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 }

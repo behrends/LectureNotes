@@ -21,7 +21,10 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val title = data?.getStringExtra("NOTE_TITLE")
-        val text = "rqCode:" + requestCode + " - resCode: " + resultCode + " - " + title
-        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+        if(resultCode == 100) {
+            Toast.makeText(this, "SPEICHERN!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "ABBRECHEN!", Toast.LENGTH_SHORT).show()
+        }
     }
 }

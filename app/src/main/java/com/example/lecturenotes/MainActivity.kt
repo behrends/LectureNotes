@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root) // setContentView(R.layout.activity_main)
         binding.button2.setOnClickListener {
             val intent = Intent(this, EditActivity::class.java)
+            intent.putExtra("NOTE_TITLE", binding.textView4.text)
             startActivity(intent)
         }
     }

@@ -1,8 +1,9 @@
 package com.example.lecturenotes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import com.example.lecturenotes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -11,8 +12,18 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root) // setContentView(R.layout.activity_main)
         binding.button2.setOnClickListener {
-            Toast.makeText(this, "Mit Listener!", Toast.LENGTH_LONG).show()
-            binding.textView4.text = "TITEL GEÄNDERT"
+            val intent = Intent(this, EditActivity::class.java)
+            startActivity(intent)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("MainActivity", "---> ONPAUSE")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MainActivity", "---> ONDESTROY")
     }
 }

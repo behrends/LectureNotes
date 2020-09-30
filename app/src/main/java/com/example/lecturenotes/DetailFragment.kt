@@ -18,6 +18,8 @@ class DetailFragment : Fragment() {
         binding.button2.setOnClickListener {view: View ->
             view.findNavController().navigate(R.id.action_detailFragment_to_editFragment)
         }
+        // Setze Titel auf den Wert, der beim Navigieren übergeben
+        binding.textView4.text = arguments?.getString("noteTitle")
         return binding.root
     }
 }

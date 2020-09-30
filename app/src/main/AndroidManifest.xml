@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".EditActivity" />
-        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

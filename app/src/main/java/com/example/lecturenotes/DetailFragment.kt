@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class DetailFragment : Fragment() {
     override fun onCreateView(
@@ -12,6 +14,10 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+        view.findViewById<FloatingActionButton>(R.id.button2).setOnClickListener {
+            view.findNavController().navigate(R.id.action_detailFragment_to_editFragment)
+        }
+        return view
     }
 }

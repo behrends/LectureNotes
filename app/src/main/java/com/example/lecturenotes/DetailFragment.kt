@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.lecturenotes.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
     override fun onCreateView(
@@ -14,10 +14,10 @@ class DetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_detail, container, false)
-        view.findViewById<FloatingActionButton>(R.id.button2).setOnClickListener {
+        val binding = FragmentDetailBinding.inflate(layoutInflater)
+        binding.button2.setOnClickListener {view: View ->
             view.findNavController().navigate(R.id.action_detailFragment_to_editFragment)
         }
-        return view
+        return binding.root
     }
 }

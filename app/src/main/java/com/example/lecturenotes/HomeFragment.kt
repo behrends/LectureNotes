@@ -25,6 +25,15 @@ class HomeFragment : Fragment() {
             val notes = noteDao.getNotes()
             adapter.setData(notes)
         }
+
+        binding.buttonNewNote.setOnClickListener { view: View ->
+            GlobalScope.async {
+                val noteDao = AppDatabase.getDatabase(requireContext()).noteDao()
+                noteDao.insert(Note("NEUE NOTIZ!", "EGAL"))
+                val notes = noteDao.getNotes()
+                adapter.setData(notes)
+            }
+        }
         return binding.root
     }
 }

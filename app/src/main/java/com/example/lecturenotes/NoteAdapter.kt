@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteItemViewHolder>() {
-    private var data = emptyList<String>()
+    private var data = emptyList<Note>()
 
     inner class NoteItemViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
@@ -20,16 +20,16 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
-        holder.textView.text = data[position]
+        holder.textView.text = data[position].title
         holder.textView.setOnClickListener { view: View ->
-            val bundle = bundleOf("noteTitle" to data[position])
+            val bundle = bundleOf("noteTitle" to data[position].title)
             view.findNavController().navigate(R.id.action_homeFragment_to_detailFragment, bundle)
         }
     }
 
     override fun getItemCount() = data.size
 
-    fun setData(values: List<String>) {
+    fun setData(values: List<Note>) {
         data = values
         notifyDataSetChanged()
     }

@@ -1,8 +1,11 @@
 package com.example.lecturenotes
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteItemViewHolder>() {
@@ -18,6 +21,10 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteItemViewHolder>() {
 
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
         holder.textView.text = data[position]
+        holder.textView.setOnClickListener { view: View ->
+            val bundle = bundleOf("noteTitle" to data[position])
+            view.findNavController().navigate(R.id.action_homeFragment_to_detailFragment, bundle)
+        }
     }
 
     override fun getItemCount() = data.size

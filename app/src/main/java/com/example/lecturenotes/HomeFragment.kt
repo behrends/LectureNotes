@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.lecturenotes.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     override fun onCreateView(
@@ -12,7 +13,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        return view
+        val binding = FragmentHomeBinding.inflate(layoutInflater)
+        val adapter = NoteAdapter()
+        binding.notesList.adapter = adapter
+        return binding.root
     }
 }

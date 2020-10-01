@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.lecturenotes.databinding.FragmentHomeBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
 class HomeFragment : Fragment() {
     override fun onCreateView(
@@ -17,11 +19,12 @@ class HomeFragment : Fragment() {
         val adapter = NoteAdapter()
         binding.notesList.adapter = adapter
 
-        val note1 = Note(1, "Notiz Nr. 1", "TODO...")
-        val note2 = Note(2, "Bemerkung", "irgendwas")
-        val note3 = Note(3, "Bitte Beachten", "super wichtig")
-        val list = listOf(note1,note2,note3)
-        adapter.setData(list)
+        // DB-Verbindung herstellen und Dao initialisieren
+        GlobalScope.async {
+            val noteDao = AppDatabase.getDatabase(requireContext()).noteDao()
+            val notes = noteDao.getNotes()
+            adapter.setData(notes)
+        }
         return binding.root
     }
 }

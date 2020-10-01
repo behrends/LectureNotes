@@ -16,6 +16,7 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(layoutInflater)
         val adapter = NoteAdapter()
         binding.notesList.adapter = adapter
+        adapter.setData(listOf("Notiz 1", "Bemerkung", "Bitte Beachten"))
         return binding.root
     }
 }

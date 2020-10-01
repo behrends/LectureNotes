@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteItemViewHolder>() {
+    private var data = emptyList<String>()
+
     inner class NoteItemViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
@@ -15,10 +17,13 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
-        holder.textView.text = "TODO: eine Notiz!"
+        holder.textView.text = data[position]
     }
 
-    override fun getItemCount(): Int {
-        return 8
+    override fun getItemCount() = data.size
+
+    fun setData(values: List<String>) {
+        data = values
+        notifyDataSetChanged()
     }
 }

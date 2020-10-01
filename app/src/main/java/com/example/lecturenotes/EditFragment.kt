@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.lecturenotes.databinding.FragmentEditBinding
 
 class EditFragment : Fragment() {
@@ -14,6 +15,9 @@ class EditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentEditBinding.inflate(layoutInflater)
+        binding.saveButton.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_editFragment_to_detailFragment)
+        }
         return binding.root
     }
 }

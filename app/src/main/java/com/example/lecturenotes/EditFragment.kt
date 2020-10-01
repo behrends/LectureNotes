@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.lecturenotes.databinding.FragmentEditBinding
 
 class EditFragment : Fragment() {
     override fun onCreateView(
@@ -12,6 +13,7 @@ class EditFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_edit, container, false)
+        val binding = FragmentEditBinding.inflate(layoutInflater)
+        return binding.root
     }
 }

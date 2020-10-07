@@ -22,31 +22,23 @@ class HomeFragment : Fragment() {
         val adapter = NoteAdapter()
         binding.notesList.adapter = adapter
 
-        // DB-Verbindung herstellen und Dao initialisieren
-        GlobalScope.async {
-//            val noteDao = AppDatabase.getDatabase(requireContext()).noteDao()
-//            val notes = noteDao.getNotes()
-            var notes = mutableListOf<Note>()
-
-            // TODO: Firebase importieren, init fehlt noch
-            val db = Firebase.firestore
-            var index = 0L
-            db.collection("notes").get()
-                .addOnSuccessListener { result ->
-                    for (note in result) {
-                        Log.d("HOME_FRAGMENT", "${note.id} => ${note.data}")
-                        // TODO Note data class soll ID-String haben --> verwende ID aus Cloud
-                        val newNote = Note(note.data.get("title").toString(), note.data.get("text").toString(), index)
-                        notes.add(newNote)
-                        index++
-                    }
+        val db = Firebase.firestore
+        var index = 0L
+        db.collection("notes").get()
+            .addOnSuccessListener { result ->
+                var notes = mutableListOf<Note>()
+                for (note in result) {
+                    Log.d("HOME_FRAGMENT", "${note.id} => ${note.data}")
+                    // TODO Note data class soll ID-String haben --> verwende ID aus Cloud
+                    val newNote = Note(note.data.get("title").toString(), note.data.get("text").toString(), index)
+                    notes.add(newNote)
+                    index++
                 }
-                .addOnFailureListener { exception ->
-                    Log.w("HOME_FRAGMENT", "Error getting documents.", exception)
-                }
-
-            adapter.setData(notes)
-        }
+                adapter.setData(notes)
+            }
+            .addOnFailureListener { exception ->
+                Log.w("HOME_FRAGMENT", "Error getting documents.", exception)
+            }
 
         binding.buttonNewNote.setOnClickListener { view: View ->
             GlobalScope.async {

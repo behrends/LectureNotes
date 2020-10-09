@@ -1,4 +1,4 @@
 # LectureNotes
-Beispiel-App für TIF18A an der DHBW Lörrach im WS20/21
+Beispiel-App (Android mit Kotlin) für die Vorlesung „Entwicklung mobiler Apps“ an der DHBW Lörrach.
 
 Für Firebase bitte die Datei `google-services.json` im Verzeichnis `app` einfügen.
